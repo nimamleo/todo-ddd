@@ -10,7 +10,7 @@ export const mongoConfig = registerAs<
     IMongoDbConfig,
     ConfigFactory<IMongoDbConfig>
 >(MONGODB_CONFIG_TOKEN, () => {
-    if (!process.env.MONGO_DB_URL_LOCAL) {
+    if (!process.env.MONGO_DB_URL_ONLINE) {
         throw new Error('MONGO_CONFIG_CONNECTION_STRING not provided.');
     }
 
