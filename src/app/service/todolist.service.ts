@@ -34,7 +34,7 @@ export class TodolistService {
             owner: user,
         });
 
-        await this.userRepository.findOneAndUpdate(
+        await this.userRepository.updateOne(
             { _id: user._id },
             { $push: { todolists: todolist } },
         );
