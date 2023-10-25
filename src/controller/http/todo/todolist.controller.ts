@@ -15,6 +15,7 @@ import {
     ApiConsumes,
     ApiOkResponse,
     ApiOperation,
+    ApiParam,
     ApiResponse,
     ApiTags,
 } from '@nestjs/swagger';
@@ -82,6 +83,11 @@ export class TodolistController {
 
     @Post('addTodo/:id')
     @ApiConsumes('application/x-www-form-urlencoded')
+    @ApiParam({
+        name: 'id',
+        type: 'string',
+        description: 'todolist ID',
+    })
     @ApiOperation({
         summary:
             'create new todo item & add it to given todolist id given in params',
@@ -102,6 +108,11 @@ export class TodolistController {
         };
     }
     @Get('getTodos/:id')
+    @ApiParam({
+        name: 'id',
+        type: 'string',
+        description: 'todolist ID',
+    })
     @ApiOperation({ summary: 'get todo item with given id' })
     async getAllTodo(@GetUser() user: User, @Param('id') todolistId: ObjectId) {
         const data = await this.todolistService.getAllTodo(todolistId, user);
@@ -112,6 +123,11 @@ export class TodolistController {
     }
 
     @Patch('updateTodo/:id')
+    @ApiParam({
+        name: 'id',
+        type: 'string',
+        description: 'todo ID',
+    })
     @ApiConsumes('application/x-www-form-urlencoded')
     @ApiOperation({ summary: 'update todo item by given id and new todo body' })
     async updateTodo(
@@ -131,6 +147,11 @@ export class TodolistController {
     }
 
     @Delete('deleteTodo/:id')
+    @ApiParam({
+        name: 'id',
+        type: 'string',
+        description: 'todo ID',
+    })
     @ApiOperation({ summary: 'delete todo by given id' })
     async deleteTodo(@GetUser() user: User, @Param('id') todoId: ObjectId) {
         const data = await this.todolistService.deleteTodo(user, todoId);
