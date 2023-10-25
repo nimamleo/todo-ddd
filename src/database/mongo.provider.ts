@@ -1,12 +1,17 @@
-// // core/database/mongodb/mongo-database.provider.ts
-// import * as mongoose from 'mongoose';
+import { MongooseModule } from '@nestjs/mongoose';
+import { ConfigService } from '@nestjs/config';
+import { Logger } from '@nestjs/common';
 
-// export const databaseProviders = [
-//     {
-//         provide: 'DATABASE_CONNECTION',
-//         useFactory: async (): Promise<typeof mongoose> =>
-//             await mongoose.connect(
-//                 'mongodb://localhost:27017/your-database-name',
-//             ),
-//     },
-// ];
+export const MongoDBProvider = MongooseModule.forRootAsync({
+    useFactory: (configService: ConfigService) => ({
+        uri: configService.get('MONGO_DB_URL_LOCAL'),
+        connectionFactory: (connection) => {
+            connection.on('connected', () => {
+                Logger.log("Database connected" , "info")
+            });
+            connection._events.connected();
+            return connection;
+        },
+    }),
+    inject: [ConfigService],
+});
