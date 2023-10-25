@@ -8,7 +8,7 @@ import {
     Delete,
 } from '@nestjs/common';
 import { ApiTags } from '@nestjs/swagger';
-import { UsersService } from 'src/infrustucture/service/users.service';
+import { UsersService } from 'src/app/service/users.service';
 
 @Controller('users')
 @ApiTags('Users')

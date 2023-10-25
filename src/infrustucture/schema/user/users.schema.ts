@@ -1,12 +1,11 @@
 import { Schema, Prop, SchemaFactory } from '@nestjs/mongoose';
 import mongoose, { HydratedDocument, ObjectId } from 'mongoose';
 import { TodoList } from '../todo/todolist.schema';
-import { UserM } from 'src/domain/model/user.model';
 
 export type UserDocument = HydratedDocument<Document & User>;
 
 @Schema({ timestamps: true })
-export class User extends UserM{
+export class User {
     _id: ObjectId;
 
     @Prop()

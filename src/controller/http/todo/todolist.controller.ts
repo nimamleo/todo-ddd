@@ -18,8 +18,8 @@ import {
     ApiResponse,
     ApiTags,
 } from '@nestjs/swagger';
-import { JwtAuthGuard } from 'src/infrustucture/guard/jwt.guard';
-import { TodolistService } from 'src/infrustucture/service/todolist.service';
+import { JwtAuthGuard } from 'src/infrustucture/Auth/guard/jwt.guard';
+import { TodolistService } from 'src/app/service/todolist.service';
 import { GetUser } from 'src/common/decorator/getUser.decorator';
 import { User } from 'src/infrustucture/schema/user/users.schema';
 import { CreateTodolistDto } from 'src/common/validation/todo/create-todolist.dto';

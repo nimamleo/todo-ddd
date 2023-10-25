@@ -3,7 +3,7 @@ import { MongooseModule } from '@nestjs/mongoose';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import * as Joi from 'joi';
 import { TodolistModule } from './infrustucture/modules/todolist.module';
-import { DatabaseModule } from './infrustucture/modules/database.module';
+import { DatabaseModule } from './database/database.module';
 import { UsersModule } from './infrustucture/modules/users.module';
 import { AuthModule } from './infrustucture/modules/auth.module';
 

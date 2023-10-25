@@ -1,9 +1,9 @@
-import { ObjectId } from 'mongoose';
+import { IEntity } from 'src/common/interface/entity.interface';
+import { IDated } from 'src/common/interface/date.interface';
 
-export class TodoM {
-    id: ObjectId;
+export interface ITodo {
     title: string;
     description: string;
-    createdDate: Date;
-    updatedDate: Date;
 }
+
+export interface ITodoEntity extends IEntity, IDated, ITodo {}

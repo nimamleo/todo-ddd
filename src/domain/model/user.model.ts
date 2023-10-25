@@ -1,11 +1,12 @@
-import { TodoM } from "./todo.model";
+import { IEntity } from 'src/common/interface/entity.interface';
+import { ITodoEntity } from './todo.model';
+import { IDated } from 'src/common/interface/date.interface';
 
-export class UserWithoutPassword {
-    id: number;
+export interface IUser {
     username: string;
-    todolists:TodoM[]
+    todolists: ITodoEntity[];
 }
 
-export class UserM extends UserWithoutPassword {
+export interface IUserEntity extends IUser, IEntity, IDated {
     password: string;
 }

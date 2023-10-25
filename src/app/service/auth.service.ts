@@ -2,7 +2,7 @@ import { Injectable, InternalServerErrorException } from '@nestjs/common';
 import * as bcrypt from 'bcrypt';
 import { JwtService } from '@nestjs/jwt';
 import { ObjectId } from 'mongoose';
-import { UserRepository } from '../repository/user.repository';
+import { UserRepository } from '../../infrustucture/repository/user.repository';
 import { CreateAuthDto } from 'src/common/validation/auth/create-auth.dto';
 
 @Injectable()
