@@ -22,10 +22,10 @@ import {
 import { JwtAuthGuard } from 'src/infrustucture/Auth/guard/jwt.guard';
 import { TodolistService } from 'src/app/service/todolist.service';
 import { GetUser } from 'src/common/decorator/getUser.decorator';
-import { User } from 'src/infrustucture/schema/user/users.schema';
 import { CreateTodolistDto } from 'src/common/validation/todo/create-todolist.dto';
 import { CreateTodoDto } from 'src/common/validation/todo/create-todo.dto';
 import { UpdateTodoDto } from 'src/common/validation/todo/update-todo.dto';
+import { User } from 'src/database/monodb/schema/user/users.schema';
 
 @Controller('todolist')
 @ApiTags('Todolists')

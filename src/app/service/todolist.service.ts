@@ -7,11 +7,11 @@ import {
 import { FilterQuery, ObjectId } from 'mongoose';
 import { UserRepository } from '../../infrustucture/repository/user.repository';
 import { CreateTodolistDto } from 'src/common/validation/todo/create-todolist.dto';
-import { User } from '../../infrustucture/schema/user/users.schema';
 import { CreateTodoDto } from 'src/common/validation/todo/create-todo.dto';
 import { UpdateTodoDto } from 'src/common/validation/todo/update-todo.dto';
 import { TodolistRepository } from 'src/infrustucture/repository/todolist.repository';
 import { TodoRepository } from 'src/infrustucture/repository/todol.repository';
+import { User } from 'src/database/monodb/schema/user/users.schema';
 
 @Injectable()
 export class TodolistService {

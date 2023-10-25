@@ -6,8 +6,8 @@ import {
 import { InjectModel } from '@nestjs/mongoose';
 import { FilterQuery, Model, UpdateQuery } from 'mongoose';
 import * as bcrypt from 'bcrypt';
-import { User, UserDocument } from '../schema/user/users.schema';
 import { CreateUserDto } from 'src/common/validation/todo/create-user.dto';
+import { User, UserDocument } from 'src/database/monodb/schema/user/users.schema';
 
 @Injectable()
 export class UserRepository  {

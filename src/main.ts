@@ -6,7 +6,13 @@ import { ConfigService } from '@nestjs/config';
 
 async function bootstrap() {
     const app = await NestFactory.create(AppModule, {
-        logger: ['warn' , "debug" , "error" , "log"],
+        logger: ['warn', 'debug', 'error', 'log'],
+        cors: {
+            origin: '*',
+            allowedHeaders: '*',
+            methods: '*',
+            exposedHeaders: ['Content-Disposition'],
+        },
     });
     const configService = app.get<ConfigService>(ConfigService);
     app.useGlobalPipes(new ValidationPipe({ whitelist: true }));
@@ -19,6 +25,6 @@ async function bootstrap() {
         .build();
     const document = SwaggerModule.createDocument(app, config);
     SwaggerModule.setup('api', app, document);
-    await app.listen(configService.get('PORT'));
+    await app.listen(configService.get('HTTP_PORT'));
 }
 bootstrap();

@@ -1,7 +1,7 @@
 import { ApiProperty } from '@nestjs/swagger';
 import { IsString, Length  , IsOptional} from 'class-validator';
+import { User } from 'src/database/monodb/schema/user/users.schema';
 import { IUser } from 'src/domain/model/user.model';
-import { User } from 'src/infrustucture/schema/user/users.schema';
 
 export class CreateTodolistDto {
     @IsString()

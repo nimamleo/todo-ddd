@@ -1,11 +1,12 @@
 import { Module } from '@nestjs/common';
-import { MongooseModule } from '@nestjs/mongoose';
-import { ConfigModule, ConfigService } from '@nestjs/config';
-import * as Joi from 'joi';
+import { ConfigModule } from '@nestjs/config';
 import { TodolistModule } from './infrustucture/modules/todolist.module';
 import { DatabaseModule } from './database/database.module';
 import { UsersModule } from './infrustucture/modules/users.module';
 import { AuthModule } from './infrustucture/modules/auth.module';
+import { mongoConfig } from './database/monodb/mongo-db.config';
+import { httpConfig } from './controller/http/http.config';
+import { jwtConfig } from './infrustucture/Auth/jwt.config';
 
 @Module({
     imports: [
@@ -13,10 +14,7 @@ import { AuthModule } from './infrustucture/modules/auth.module';
         DatabaseModule,
         ConfigModule.forRoot({
             isGlobal: true,
-            validationSchema: Joi.object({
-                MONGO_DB_URL: Joi.string(),
-                JWT_SECRET: Joi.string(),
-            }),
+            load: [mongoConfig, httpConfig , jwtConfig],
         }),
         UsersModule,
         AuthModule,
