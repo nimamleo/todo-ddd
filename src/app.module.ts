@@ -14,7 +14,8 @@ import { jwtConfig } from './infrustucture/Auth/jwt.config';
         DatabaseModule,
         ConfigModule.forRoot({
             isGlobal: true,
-            load: [mongoConfig, httpConfig , jwtConfig],
+            load: [mongoConfig, httpConfig, jwtConfig],
+            envFilePath: `.env.${process.env.NODE_ENV || 'development'}`,
         }),
         UsersModule,
         AuthModule,
