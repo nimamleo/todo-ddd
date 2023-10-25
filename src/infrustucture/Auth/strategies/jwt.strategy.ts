@@ -21,8 +21,9 @@ export class JwtStrategy extends PassportStrategy(Strategy, 'jwt') {
         const user = await this.userRepository.findOne({
             username: payload.username,
         });
+        
         if (!user)
-            throw new NotFoundException('please login');
+        throw new NotFoundException('please login');
 
         return user;
     }

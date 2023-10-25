@@ -25,12 +25,15 @@ export class TodolistService {
         const isExist = await this.todoListRepository.findOne({
             listTitle: createTodolistDto.listTitle,
         });
-        if (isExist) throw new ForbiddenException('this data already exist');
+        if (isExist) {
+            throw new ForbiddenException('this data already exist');
+        }
 
         const todolist = await this.todoListRepository.create({
             ...createTodolistDto,
-            owner: user._id,
+            owner: user,
         });
+
         await this.userRepository.findOneAndUpdate(
             { _id: user._id },
             { $push: { todolists: todolist } },
@@ -80,11 +83,11 @@ export class TodolistService {
     async getAllTodo(todolistId: ObjectId, user: User) {
         await this.checkExist({ _id: todolistId });
 
-        await this.checkExist({ _id: todolistId });
-        return this.todoListRepository.findOne(
+        const res = await this.todoListRepository.findOne(
             { _id: todolistId, owner: user._id },
-            { todos: 1 },
+            { listTitle: 0, _id: 0, owner: 0, createdAt: 0, updatedAt: 0 },
         );
+        return res;
     }
     async updatateTodo(
         updateTodoDto: UpdateTodoDto,

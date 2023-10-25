@@ -26,8 +26,8 @@ import { CreateTodolistDto } from 'src/common/validation/todo/create-todolist.dt
 import { CreateTodoDto } from 'src/common/validation/todo/create-todo.dto';
 import { UpdateTodoDto } from 'src/common/validation/todo/update-todo.dto';
 
-@ApiTags('Todolists')
 @Controller('todolist')
+@ApiTags('Todolists')
 @UseGuards(JwtAuthGuard)
 @ApiBearerAuth()
 export class TodolistController {
@@ -82,12 +82,15 @@ export class TodolistController {
 
     @Post('addTodo/:id')
     @ApiConsumes('application/x-www-form-urlencoded')
-    @ApiOperation({ summary: 'create new todo item & add it to given todolist id given in params' })
+    @ApiOperation({
+        summary:
+            'create new todo item & add it to given todolist id given in params',
+    })
     async addTodo(
         @Body() createTodoDto: CreateTodoDto,
         @GetUser() user: User,
         @Param('id') todolistId: ObjectId,
-        ) {
+    ) {
         const data = await this.todolistService.createTodo(
             createTodoDto,
             user,
@@ -115,7 +118,7 @@ export class TodolistController {
         @Body() updateTodoDto: UpdateTodoDto,
         @GetUser() user: User,
         @Param('id') todoId: ObjectId,
-        ) {
+    ) {
         const data = await this.todolistService.updatateTodo(
             updateTodoDto,
             user,
@@ -126,7 +129,7 @@ export class TodolistController {
             statusCode: 200,
         };
     }
-    
+
     @Delete('deleteTodo/:id')
     @ApiOperation({ summary: 'delete todo by given id' })
     async deleteTodo(@GetUser() user: User, @Param('id') todoId: ObjectId) {

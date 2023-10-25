@@ -1,5 +1,5 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
-import { Document, HydratedDocument, ObjectId } from 'mongoose';
+import mongoose, { Document, HydratedDocument, ObjectId } from 'mongoose';
 import { Todo, TodoSchema } from './todo.schema';
 import { User } from '../user/users.schema';
 
@@ -10,7 +10,11 @@ export class TodoList {
     @Prop({ required: true })
     listTitle: string;
 
-    @Prop({ required: true })
+    @Prop({
+        type: [mongoose.Schema.Types.ObjectId],
+        ref: 'User',
+        required: true,
+    })
     owner: User;
 
     @Prop({ type: [TodoSchema] })

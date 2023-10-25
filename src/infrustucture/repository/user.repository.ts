@@ -43,7 +43,6 @@ export class UserRepository  {
             throw new InternalServerErrorException('this user already exist');
 
         const password = await bcrypt.hash(createEntityData.password, 10);
-        console.log(password);
 
         return this.userModel.create({ ...createEntityData, password });
     }

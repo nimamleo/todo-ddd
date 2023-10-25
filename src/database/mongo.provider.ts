@@ -7,11 +7,6 @@
 //         useFactory: async (): Promise<typeof mongoose> =>
 //             await mongoose.connect(
 //                 'mongodb://localhost:27017/your-database-name',
-//                 {
-//                     useUnifiedTopology: true,
-//                     useFindAndModify: false,
-//                     useCreateIndex: true,
-//                 },
 //             ),
 //     },
 // ];
