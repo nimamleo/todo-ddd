@@ -112,7 +112,9 @@ export class TodolistService {
                 new: true,
             },
         );
-        if (updateResult)
+        console.log(updateResult);
+
+        if (!updateResult)
             throw new InternalServerErrorException('update failed');
         return updateResult;
     }
@@ -124,7 +126,7 @@ export class TodolistService {
                 new: true,
             },
         );
-        if (removeResult)
+        if (!removeResult)
             throw new InternalServerErrorException('can not remove todo');
         return removeResult;
     }

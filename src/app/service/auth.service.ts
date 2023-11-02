@@ -34,7 +34,9 @@ export class AuthService {
 
         if (isUserExist)
             throw new InternalServerErrorException('user already exist');
-        const user = this.userRepository.create(dto);
+        const hash =await bcrypt.hash(dto.password, 10);
+        
+        const user = this.userRepository.create({ ...dto, password: hash });
         return user;
     }
 

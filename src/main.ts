@@ -36,7 +36,7 @@ async function bootstrap() {
     logger.log(
         `Swagger URL in http://127.0.0.1:${configService.get(
             'HTTP_PORT',
-        )}/swagger`,
+        )}/api`,
     );
 }
 bootstrap();
