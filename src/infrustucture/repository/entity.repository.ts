@@ -14,7 +14,6 @@ export abstract class EntityRepository<T extends Document> {
         entityFilterQuery: FilterQuery<T>,
         projection?: Record<string, unknown>,
     ): Promise<T | null> {
-        
         return this.entityModel
             .findOne(entityFilterQuery, {
                 __v: 0,
@@ -35,10 +34,15 @@ export abstract class EntityRepository<T extends Document> {
     async updateOne(
         entityFilterQuery: FilterQuery<T>,
         updateEntityData: UpdateQuery<unknown>,
-    ): Promise<UpdateWriteOpResult | null> {
-        return this.entityModel.updateOne(entityFilterQuery, updateEntityData, {
-            new: true,
-        });
+        projection?: Record<string, unknown>,
+    ): Promise<T | null> {
+        return await this.entityModel.findOneAndUpdate(
+            entityFilterQuery,
+            updateEntityData,
+            {
+                ...projection,
+            },
+        );
     }
 
     async deleteOne(entityFilterQuery: FilterQuery<T>): Promise<boolean> {

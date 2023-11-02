@@ -76,9 +76,15 @@ export class TodolistService {
         const addTodoResult = await this.todoListRepository.updateOne(
             { _id: todolistId, owner: user._id },
             { $push: { todos: createTodoDto } },
+            {
+                returnDocument: 'after',
+                projection: {
+                    todos: 1,
+                },
+            },
         );
 
-        if (addTodoResult.modifiedCount > 0) return addTodoResult;
+        if (addTodoResult) return addTodoResult;
     }
     async getAllTodo(todolistId: ObjectId, user: User) {
         await this.checkExist({ _id: todolistId });
@@ -102,8 +108,11 @@ export class TodolistService {
                     'todos.$.description': updateTodoDto.description,
                 },
             },
+            {
+                new: true,
+            },
         );
-        if (updateResult.modifiedCount == 0)
+        if (updateResult)
             throw new InternalServerErrorException('update failed');
         return updateResult;
     }
@@ -111,8 +120,11 @@ export class TodolistService {
         const removeResult = await this.todoListRepository.updateOne(
             { 'todos._id': todoId },
             { $pull: { todos: { _id: todoId } } },
+            {
+                new: true,
+            },
         );
-        if (removeResult.modifiedCount == 0)
+        if (removeResult)
             throw new InternalServerErrorException('can not remove todo');
         return removeResult;
     }
